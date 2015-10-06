@@ -29,12 +29,12 @@ int main(int argc, char **argv){
     double stdDev;
     double *var;
     double mediafo=0;
-    char str[]="dadosplot//dadosplot";
-    char strf[100];
+    //char str[]="dadosplot//dadosplot";
+    //char strf[100];
     double *mediaBfo;
     double *mediaM;
-    FILE *file;
-    FILE *shellComands;
+    //FILE *file;
+    //FILE *shellComands;
 
 /*    //refresh the folder of plotting
     shellComands = popen ("rm dadosplot// -R", "w");
@@ -49,7 +49,8 @@ int main(int argc, char **argv){
         return 0;
     }
     showParameters(FUNCTION, RUN, MAX_ITER, POP_SIZE, DIM);
-
+    omp_set_num_threads(CORES);
+    
     switch(FUNCTION){
         case 9:
             rest=1;
@@ -100,7 +101,12 @@ int main(int argc, char **argv){
             }
         }
         for(i=0;i<DIM;i++)best[i]=pop[best_index][i];
-
+       /* for(i = 0; i < POP_SIZE ; i++){
+            for(k = 0 ; k < DIM ; k++){
+                printf("%g ",pop[i][k]);
+            }
+            printf("\n");
+        }*/
         num_fit_eval=0;
         num_iter=0;
         mediafo=0;

@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-c -Wall
-LDFLAGS = -pthread
+LDFLAGS = -fopenmp
 MATH=-lm
 OBJECTS=algorithm.o mersenne.o sosfunctions.o
 
