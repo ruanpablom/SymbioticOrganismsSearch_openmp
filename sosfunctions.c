@@ -953,28 +953,28 @@ void sos_iter(){
 
     #pragma omp parallel shared(pop,best,fo,bestfo,best_index) private(i,k)
     {
-        #pragma omp critical 
-        {
-            #pragma for
+        #pragma omp for 
                 for(i=0;i<POP_SIZE;i++){
-                    mutualism_phase(i,pop,best,fo);
-                    num_fit_eval+=2;
-                    commensalism_phase(i,pop,best,fo);
-                    num_fit_eval++;
-                    parasitism_phase(i,pop,fo);
-                    num_fit_eval++;	
+                    #pragma omp critical
+		    {    
+		    	mutualism_phase(i,pop,best,fo);
+                    	num_fit_eval+=2;
+                    	commensalism_phase(i,pop,best,fo);
+                    	num_fit_eval++;
+                    	parasitism_phase(i,pop,fo);
+                    	num_fit_eval++;	
 
-                    for(k=0;k<POP_SIZE;k++){
-                        if(fo[k] <= bestfo){
-                            bestfo=fo[k];
-                            best_index=k;
-                        }        
-                    }
-                    for(k=0;k<DIM;k++){
-                        best[k]=pop[best_index][k];
-                    }
+                    	for(k=0;k<POP_SIZE;k++){
+                        	if(fo[k] <= bestfo){
+                            	bestfo=fo[k];
+                            	best_index=k;
+                        	}        
+                    	}
+                    	for(k=0;k<DIM;k++){
+                    	    best[k]=pop[best_index][k];
+                    	}
+		    }
                 }
-        }
     }
 }
 
