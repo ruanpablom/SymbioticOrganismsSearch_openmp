@@ -1,80 +1,20 @@
-
-real	0m34.479s
-user	0m34.204s
-sys	0m0.292s
-
-real	0m34.506s
-user	0m34.191s
-sys	0m0.336s
-
-real	0m34.534s
-user	0m34.311s
-sys	0m0.248s
-
-real	0m34.436s
-user	0m34.254s
-sys	0m0.211s
-
-real	0m34.494s
-user	0m34.252s
-sys	0m0.268s
-
-real	0m34.618s
-user	0m34.328s
-sys	0m0.316s
-
-real	0m34.630s
-user	0m34.330s
-sys	0m0.324s
-
-real	0m34.448s
-user	0m34.155s
-sys	0m0.320s
-
-real	0m34.491s
-user	0m34.224s
-sys	0m0.292s
-
-real	0m34.518s
-user	0m34.226s
-sys	0m0.316s
-
-real	0m34.541s
-user	0m34.299s
-sys	0m0.270s
-
-real	0m34.390s
-user	0m34.151s
-sys	0m0.264s
-
-real	0m34.463s
-user	0m34.201s
-sys	0m0.288s
-
-real	0m34.455s
-user	0m34.184s
-sys	0m0.297s
-
-real	0m34.546s
-user	0m34.298s
-sys	0m0.272s
-
-real	0m34.597s
-user	0m34.308s
-sys	0m0.316s
-
-real	0m34.484s
-user	0m34.256s
-sys	0m0.252s
-
-real	0m34.544s
-user	0m34.257s
-sys	0m0.284s
-
-real	0m34.535s
-user	0m34.240s
-sys	0m0.280s
-
-real	0m34.545s
-user	0m34.206s
-sys	0m0.308s
+34.479
+34.506
+34.534
+34.436
+34.494
+34.618
+34.630
+34.448
+34.491
+34.518
+34.541
+34.390
+34.463
+34.455
+34.546
+34.597
+34.484
+34.544
+34.535
+34.545

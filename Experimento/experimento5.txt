@@ -1,80 +1,20 @@
-
-real	0m21.094s
-user	0m50.314s
-sys	0m4.122s
-
-real	0m20.976s
-user	0m50.036s
-sys	0m4.230s
-
-real	0m21.052s
-user	0m49.937s
-sys	0m4.374s
-
-real	0m21.014s
-user	0m49.852s
-sys	0m4.430s
-
-real	0m21.021s
-user	0m50.325s
-sys	0m4.057s
-
-real	0m20.881s
-user	0m49.821s
-sys	0m4.313s
-
-real	0m20.959s
-user	0m49.866s
-sys	0m4.263s
-
-real	0m20.817s
-user	0m49.932s
-sys	0m4.152s
-
-real	0m21.038s
-user	0m50.150s
-sys	0m4.116s
-
-real	0m21.025s
-user	0m50.365s
-sys	0m3.969s
-
-real	0m20.931s
-user	0m49.750s
-sys	0m4.466s
-
-real	0m20.973s
-user	0m49.830s
-sys	0m4.355s
-
-real	0m21.026s
-user	0m50.091s
-sys	0m4.232s
-
-real	0m20.873s
-user	0m49.781s
-sys	0m4.236s
-
-real	0m20.941s
-user	0m50.063s
-sys	0m4.133s
-
-real	0m20.977s
-user	0m49.851s
-sys	0m4.298s
-
-real	0m20.979s
-user	0m50.008s
-sys	0m4.237s
-
-real	0m20.714s
-user	0m50.062s
-sys	0m3.877s
-
-real	0m21.032s
-user	0m50.306s
-sys	0m4.014s
-
-real	0m21.121s
-user	0m50.161s
-sys	0m4.206s
+21.094
+20.976
+21.052
+21.014
+21.021
+20.881
+20.959
+20.817
+21.038
+21.025
+20.931
+20.973
+21.026
+20.873
+20.941
+20.977
+20.979
+20.714
+21.032
+21.121
