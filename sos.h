@@ -49,12 +49,10 @@ void mutualism_phase(int index_i, double **pop_, double *best_, double *fo_);
 void commensalism_phase(int index_i, double **pop_, double *best_, double *fo);
 void parasitism_phase(int index_i, double **pop_, double *fo);
 int AvgStdDev(double *Avg,double *StdDev,double Var[]);
-void plot(FILE *shellComands, char *run);
-char *converteDecChar(char *strf, int dec);
 int ffscanf(char *fieldname, FILE *fp, char *format, void *inbuffer);
 void sos_iter();
 void alloc_slice_pointers();
 void free_slice();
-void showConst(double *var, int r, FILE *file);
+void showConst(double *var, int r);
 
 #endif

@@ -11,7 +11,6 @@
 #define PIII 3.14159265359
 #define COND FUNCTION==9 || FUNCTION==10 || FUNCTION==11 || FUNCTION==12 || FUNCTION==13 || FUNCTION==14 || FUNCTION==15
 
-//pthread_mutex_t data_mutex = PTHREAD_MUTEX_INITIALIZER;
 omp_lock_t my_lock;
 
 double randon( double inferior, double superior){
@@ -804,7 +803,7 @@ void *th_init_pop(void *argThread){
 void *th_sos(void* argThread){
 }
 
-void showConst(double *var, int r, FILE *file){
+void showConst(double *var, int r){
     int i;
     if(COND){
         if(constr(best,1)==0)var[r]=bestfo;
@@ -813,20 +812,11 @@ void showConst(double *var, int r, FILE *file){
 
         switch(FUNCTION){
             case 9: //Cantilever Beam
-                fprintf(file,"g1=%g ",c_f[0]);
-                if(c_f[0]>1) fprintf(file, "Fail\n");
-                else fprintf(file, "Ok\n");
                 printf("g1=%g ",c_f[0]);
                 if(c_f[0]>1)printf("Fail\n");
                 else printf("Ok\n");
                 break;
             case 10: //I-Beam vertical deflection 
-                fprintf(file, "g1=%g ",c_f[0]);
-                if(c_f[0]>300) fprintf(file, "Fail ");
-                else fprintf(file, "Ok ");
-                fprintf(file, "g2=%g ",c_f[1]);
-                if(c_f[1]>56) fprintf(file, "Fail\n");
-                else fprintf(file, "Ok\n");
                 printf("g1=%g ",c_f[0]);
                 if(c_f[0]>300) printf("Fail ");
                 else printf("Ok ");
@@ -835,27 +825,6 @@ void showConst(double *var, int r, FILE *file){
                 else printf("Ok\n");
                 break;
             case 11: //Welded Beam 
-                fprintf(file,"g1=%g ",c_f[0]);fprintf(file,"g1=%g ",c_f[0]);
-                if(c_f[0]>0) fprintf(file, "Fail ");
-                else fprintf(file, "Ok ");
-                fprintf(file,"g2=%g ",c_f[1]);
-                if(c_f[1]>0) fprintf(file, "Fail ");
-                else fprintf(file, "Ok ");
-                fprintf(file,"g3=%g ",c_f[2]);
-                if(c_f[2]>0) fprintf(file, "Fail ");
-                else fprintf(file, "Ok ");
-                fprintf(file,"g4=%g ",c_f[3]);
-                if(c_f[3]>0) fprintf(file, "Fail ");
-                else fprintf(file, "Ok ");
-                fprintf(file,"g5=%g ",c_f[4]);
-                if(c_f[4]>0) fprintf(file, "Fail ");
-                else fprintf(file, "Ok ");
-                fprintf(file,"g6=%g ",c_f[5]);
-                if(c_f[5]>0) fprintf(file, "Fail ");
-                else fprintf(file, "Ok ");
-                fprintf(file,"g7=%g ",c_f[6]);
-                if(c_f[6]>0) fprintf(file, "Fail\n");
-                else fprintf(file, "Ok\n");
                 printf("g1=%g ",c_f[0]);
                 if(c_f[0]>0) printf("Fail ");
                 else printf("Ok ");
@@ -878,19 +847,7 @@ void showConst(double *var, int r, FILE *file){
                 if(c_f[6]>0) printf("Fail\n");
                 else printf("Ok\n");
                 break;
-            case 12: //Pressure Vessel 
-                fprintf(file,"g1=%g ",c_f[0]);
-                if(c_f[0]>0) fprintf(file, "Fail ");
-                else fprintf(file, "Ok ");
-                fprintf(file,"g2=%g ",c_f[1]);
-                if(c_f[1]>0) fprintf(file, "Fail ");
-                else fprintf(file, "Ok ");
-                fprintf(file,"g3=%g ",c_f[2]);
-                if(c_f[2]>0) fprintf(file, "Fail ");
-                else fprintf(file, "Ok ");
-                fprintf(file,"g4=%g ",c_f[3]);
-                if(c_f[3]>0) fprintf(file, "Fail\n");
-                else fprintf(file, "Ok\n");
+            case 12: //Pressure Vessel  
                 printf("g1=%g ",c_f[0]);
                 if(c_f[0]>0) printf("Fail ");
                 else printf("Ok ");
@@ -905,11 +862,9 @@ void showConst(double *var, int r, FILE *file){
                 else printf("Ok\n");
                 break;
             case 13: //Tension/compression string
-                fprintf(file,"g1=%g g2=%g g3=%g g4=%g\n",c_f[0],c_f[1],c_f[3],c_f[3]);
                 printf("g1=%g g2=%g g3=%g g4=%g\n",c_f[0],c_f[1],c_f[3],c_f[3]);
                 break;
             case 14: //Speed Reducer(Gear Train)
-                fprintf(file,"g1=%g g2=%g g3=%g g4=%g g5=%g g6=%g g7=%g g8=%g g9=%g g10=%g g11=%g\n",c_f[0],c_f[1],c_f[3],c_f[3],c_f[4],c_f[5],c_f[6],c_f[7],c_f[8],c_f[9],c_f[10]);
                 printf("g1=%g g2=%g g3=%g g4=%g g5=%g g6=%g g7=%g g8=%g g9=%g g10=%g g11=%g\n",c_f[0],c_f[1],c_f[3],c_f[3],c_f[4],c_f[5],c_f[6],c_f[7],c_f[8],c_f[9],c_f[10]);
                 break;
             case 15: //10-Bar-Truss
@@ -927,23 +882,7 @@ void showConst(double *var, int r, FILE *file){
                 for(i=16;i<22;i++){
                     printf("g(%i)=%g ",i+1,c_f[i]);
                 }
-                printf("\n");
-
-                fprintf(file,"Stress Violation: ");
-                for(i=0;i<10;i++){
-                    fprintf(file,"g(%i)=%g ",i+1, c_f[i]);
-                }
-                fprintf(file,"\n");
-                fprintf(file,"DispX: ");
-                for(i=10;i<16;i++){
-                    fprintf(file,"g(%i)=%g ",i+1, c_f[i]);
-                }
-                fprintf(file,"\n");
-                fprintf(file,"DispY: ");
-                for(i=16;i<22;i++){
-                    fprintf(file,"g(%i)=%g ",i+1,c_f[i]);
-                }
-                fprintf(file,"\n");
+                printf("\n"); 
                 break;
         }
     }
@@ -992,7 +931,7 @@ void initPop(){
             for (k=0; k<DIM;k++){ //each dimension of the individual
                 pop[j][k] = randon(lb[0],ub[0]);
             }	
-            //fo[j] = objfunc(pop[j], 0);
+            fo[j] = objfunc(pop[j], 0);
         }
     }else{
     #pragma omp parallel for shared(pop,fo) private(j,k)	
@@ -1206,54 +1145,6 @@ int AvgStdDev(double *Avg,double *StdDev,double Var[]){
     return qtd;
 }
 
-void plot(FILE *shellComands, char *run){
-    if(strcmp(run,"Final")==0){
-        shellComands = popen ("gnuplot -persistent", "w");
-        fprintf(shellComands,"	reset\n"); 
-        fprintf(shellComands,"	set terminal pngcairo\n");
-        fprintf(shellComands,"	set output \"dadosplot/sosplotMedia_M-Media_Bfo-%s.png\"\n",run);
-        fprintf(shellComands,"	set grid\n");
-        fprintf(shellComands,"	set title \"SOS Analysis\"\n");
-        fprintf(shellComands,"	set xlabel \"Itera\303\247\303\265es\"\n");
-        fprintf(shellComands,"	set ylabel \"Fo\" \n");
-        fprintf(shellComands,"	plot \"dadosplot//dadosplot%s.txt\" using 1:3 title \"Media_M\" w lines, \"dadosplot//dadosplot%s.txt\" using 1:2 title \"Media_Bfo\" w lines",run,run);
-        pclose(shellComands); 
-    }else{
-        shellComands = popen ("gnuplot -persistent", "w");
-        fprintf(shellComands,"	reset\n"); 
-        fprintf(shellComands,"	set terminal pngcairo\n");
-        fprintf(shellComands,"	set output \"dadosplot/sosplotMedia_fo-Best_Fo-%s.png\"\n",run);
-        fprintf(shellComands,"	set grid\n");
-        fprintf(shellComands,"	set title \"SOS Analysis\"\n");
-        fprintf(shellComands,"	set xlabel \"Itera\303\247\303\265es\"\n");
-        fprintf(shellComands,"	set ylabel \"Fo\" \n");
-        fprintf(shellComands,"	plot \"dadosplot//dadosplot%s.txt\" using 1:3 title \"Media Fo\" w lines , \"dadosplot//dadosplot%s.txt\" using 1:2 title \"best_thFo\" w lines",run,run);
-        pclose(shellComands); 	
-    }
-}
-
-char *converteDecChar(char *strf, int dec){
-    int i;
-    char str[100];
-    if(dec==0){
-        strf[0]='0';
-        strf[1]='\0';
-        return strf;
-    }
-    for ( i = 0; i < 100; i++ ){
-        if ( dec == 0 ) break;
-        str[i] = (dec % 10) + 48;
-
-        dec /= 10;
-    }
-    str[i]='\0';
-    for ( i = strlen(str)-1; i >= 0; i-- ){
-        strf[(strlen(str)-1)-i]=str[i];
-    }
-    strf[strlen(str)]='\0';
-    return strf;
-}
-
 int ffscanf(char *fieldname, FILE *fp, char *format, void *inbuffer){
     char buffer[100];
     int len;
@@ -1315,7 +1206,6 @@ int ffscanf(char *fieldname, FILE *fp, char *format, void *inbuffer){
 
 void AllocArrays(){
     int j;
-    //int constn=0;
 
     argThread = (slice*)malloc(CORES*sizeof(slice));
     if(argThread==NULL)exit(0);
