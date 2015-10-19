@@ -12,6 +12,7 @@ Lisence:     Free
 #include <unistd.h>
 #include <math.h>
 #include <time.h>
+#include <sys/time.h>
 #include "mersenne.h"
 #include "sos.h"
 
@@ -31,7 +32,9 @@ int main(int argc, char **argv){
     double mediafo=0;
     double *mediaBfo;
     double *mediaM;
-    
+    struct timeval t1, t2;
+    double elapsedTime,total=0; 
+
     srand(time(NULL));
 
     if (GetParameters(argv) == -1){	//read input file
@@ -80,6 +83,7 @@ int main(int argc, char **argv){
 
     for (r=0;r<RUN;r++){	
         //Init population
+        gettimeofday(&t1, NULL);      
         initPop();
         bestfo = 10000000;
 
@@ -104,7 +108,11 @@ int main(int argc, char **argv){
             mediaM[num_iter]+=mediafo;//sum of all mediafo in the num_iter position
             mediaBfo[num_iter]+=bestfo;//sum of all bestfo	in the num_iter position
         }
-
+        gettimeofday(&t2, NULL);
+        elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
+        elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
+        elapsedTime /=1000.0; 
+        total += elapsedTime; 
         //Loop de Iterações.
         printf("RUN: %d\n",r);
         printf("Best solution: ");
@@ -118,7 +126,7 @@ int main(int argc, char **argv){
         printf("MIN: %g\n",bestfoRUN);
         printf("bestfo: %g\n", bestfo);
         printf("bestfoRUN: %g\n", bestfoRUN);
-
+        printf("RUN TIME= %.3lfs\n", elapsedTime); 
         showConst(var,r);
 
         printf("N_fit_eval:");
@@ -143,7 +151,8 @@ int main(int argc, char **argv){
     printf("%g\n",stdDev);
     printf("Feasible: ");
     printf("%i\n",nfeasible);
-    printf("====================\n");
+    printf("Avg Time: %.3lfs\n",total/RUN);
+    printf("====================\n"); 
     freeArrays();
     return 0;
 }
