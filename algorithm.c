@@ -34,6 +34,8 @@ int main(int argc, char **argv){
     double *mediaM;
     struct timeval t1, t2;
     double elapsedTime,total=0; 
+    char str[16];
+    FILE *file; 
 
     srand(time(NULL));
 
@@ -113,7 +115,7 @@ int main(int argc, char **argv){
         elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
         elapsedTime /=1000.0; 
         total += elapsedTime; 
-        //Loop de Iterações.
+        // Loop de Iterações.
         printf("RUN: %d\n",r);
         printf("Best solution: ");
         for (k=0; k<DIM;k++){//variables
@@ -126,7 +128,7 @@ int main(int argc, char **argv){
         printf("MIN: %g\n",bestfoRUN);
         printf("bestfo: %g\n", bestfo);
         printf("bestfoRUN: %g\n", bestfoRUN);
-        printf("RUN TIME= %.3lfs\n", elapsedTime); 
+        printf("RUN TIME: %.3lfs\n", elapsedTime); 
         showConst(var,r);
 
         printf("N_fit_eval:");
@@ -142,7 +144,29 @@ int main(int argc, char **argv){
        }
     }
     int nfeasible = AvgStdDev(&avg,&stdDev,var);
+    sprintf(str,"experimento%d.txt",CORES);
+    file = fopen(str,"w");
+    if(file == NULL){
+        return -1;
+    }
+
+    fprintf(file,"====================\n");
+    fprintf(file,"Runs: %i\n",RUN);
+    fprintf(file,"Best Fo: ");
+    fprintf(file,"%g\n",bestfoRUN);
+    fprintf(file,"Avg: ");
+    fprintf(file,"%g\n",avg);
+    fprintf(file,"StdDev: ");
+    fprintf(file,"%g\n",stdDev);
+    fprintf(file,"Feasible: ");
+    fprintf(file,"%i\n",nfeasible);
+    fprintf(file,"Avg Time: %.3lfs\n",total/RUN);
+    fprintf(file,"====================\n"); 
+    
+    fclose(file);
+
     printf("====================\n");
+    printf("Runs: %i\n",RUN);
     printf("Best Fo: ");
     printf("%g\n",bestfoRUN);
     printf("Avg: ");

@@ -789,7 +789,7 @@ double objfunc(double *sol, int cond){
             for (i = 0; i < 10; i++) {
                 somF += ro*area[i]*length[i];
             }
-
+            free(area);
             return somF+top;
         default:
             printf("Info: Invalid function..\n") ;
@@ -1012,7 +1012,9 @@ void mutualism_phase(int index_i, double **pop_th, double *best_th, double *fo_t
     free(array_rand);
     free(new_x_i);	
     free(new_x_j);
-    free(mutual);		
+    free(mutual);
+    free(l);
+    free(u);    
 }
 
 void commensalism_phase(int index_i, double **pop_th, double *best_th, double *fo_th){
@@ -1069,7 +1071,9 @@ void commensalism_phase(int index_i, double **pop_th, double *best_th, double *f
     }
 
     free(array_rand);
-    free(new_x_i);	
+    free(new_x_i);
+    free(l);
+    free(u);    
 }
 
 void parasitism_phase(int index_i, double **pop_th, double *fo_th){
@@ -1118,7 +1122,9 @@ void parasitism_phase(int index_i, double **pop_th, double *fo_th){
             fo_th[index_j]=parasite_fo;
         }		
     }
-    free(parasite);	
+    free(parasite);
+    free(l);
+    free(u);    
 }
 
 int AvgStdDev(double *Avg,double *StdDev,double Var[]){
